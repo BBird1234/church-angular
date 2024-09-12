@@ -1,0 +1,113 @@
+<app-navbar (searchTextChanged)="onSearchTextEntered($event)"></app-navbar>
+<div class="container">
+    <div class="card">
+        <div class="face face1">
+            <div class="content">
+                <img src="assets/userImage.jpg" alt="Item Image">
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="content">
+                <img src="assets/userImage.jpg" alt="Item Image">
+                <h2 class="header">Name</h2>
+                <p class="username">Mr.member</p>
+                <h2 class="header">Gender</h2>
+                <p class="price">male</p>
+                <h2 class="header">Date of Birth</h2>
+                <p class="birthday">1/12/2000</p>
+                <h2 class="header">E-mail</h2>
+                <p class="email">adkj at gmail.com</p>
+                <button >button</button>
+                <button>button</button>
+                <button>button</button>
+                <button>button</button>
+            </div>
+        </div>
+    </div>
+
+
+    <ng-container *ngFor="let m of members">
+      <div class="card" *ngIf="searchText === '' || m.cname.toLowerCase().includes(searchText)">
+          <div class="face face1">
+              <div class="content">
+                  <img [src]="m.image" alt="Item Image">
+              </div>
+          </div>
+          <div class="face face2">
+              <div class="content">
+                  <img [src]="m.image" alt="Item Image">
+                  <h2 class="header">Name</h2>
+                  <p class="username">{{m.cname}}</p>
+                  <h2 class="header">Gender</h2>
+                  <p class="price">{{m.cgender}}</p>
+                  <h2 class="header">Date of Birth</h2>
+                  <p class="birthday">{{m.cdob}}</p>
+                  <h2 class="header">E-mail</h2>
+                  <p class="email">{{m.email}}</p>
+                  <button class="button-74" role="button" (click)="goToMember(m.cid)">Details</button>
+                  <button class="button-74" role="button" (click)="openModel(m)">Update</button>
+                  <button class="button-74" role="button">Add Cash</button>
+                  <button class="button-74" role="button" (click)="deletemember(m.cid)">Delete</button>
+              </div>
+          </div>
+      </div>
+  </ng-container>
+  
+  <div class="modal" id="myModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Update Member</h4>
+                  <button type="button" class="btn-close" (click)="CloseModel()" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="updateForm" (ngSubmit)="updateMember()">
+                      <mat-card class="example-card-header mb-2">
+                          <p class="header-card-text">Update Details</p>
+                      </mat-card>
+                      <mat-card class="example-card">
+                          <mat-card-content>
+                              <div class="row">
+                                  <label class="col-2 label">Member Name</label>
+                                  <mat-form-field class="col-6" appearance="outline">
+                                      <mat-label class="label1">Member Name</mat-label>
+                                      <input matInput formControlName="cname" placeholder="Name">
+                                  </mat-form-field>
+                              </div>
+                              <div class="row">
+                                  <label class="col-md-2 label">Gender</label>
+                                  <mat-form-field class="col-6" appearance="outline">
+                                      <mat-label class="label1">Select</mat-label>
+                                      <mat-select formControlName="cgender">
+                                          <mat-option value="Male">Male</mat-option>
+                                          <mat-option value="Female">Female</mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+                              </div>
+                              <div class="row">
+                                  <label class="col-2 label">Email</label>
+                                  <mat-form-field class="col-6" appearance="outline">
+                                      <mat-label class="label1">Email</mat-label>
+                                      <input matInput formControlName="email" placeholder="Email">
+                                  </mat-form-field>
+                              </div>
+                              <div class="row">
+                                  <label class="col-2 label">Date of Birth</label>
+                                  <mat-form-field class="col-6" appearance="outline">
+                                      <mat-label class="label1">Date of Birth</mat-label>
+                                      <input matInput [matDatepicker]="dobPicker" formControlName="cdob" placeholder="Date of Birth">
+                                      <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                                      <mat-datepicker #dobPicker></mat-datepicker>
+                                  </mat-form-field>
+                              </div>
+                          </mat-card-content>
+                      </mat-card>
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-danger">Update</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  

@@ -1,0 +1,17 @@
+.nav{
+    background: #0d0d0d;
+ 
+}
+
+.btn{
+    background-color: #f2e2c4;
+}
+
+.navbar-brand{
+font-family: 'Montserrat', sans-serif;
+color: #a67a46;
+font-size: 1.5rem;}
+
+.nav-link{
+    color: #a67a46;
+}

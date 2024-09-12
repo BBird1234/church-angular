@@ -1,0 +1,68 @@
+<body>
+	<div class="container">
+	  <mat-card class="example-card-header mb-2">
+		<p class="header-card-text">Register Member</p>
+	  </mat-card>
+	  <mat-card class="example-card">
+		<mat-card-content>
+		  <div class="row">
+			<form [formGroup]="productForm">
+			  <div class="row">
+				<label class="col-2 label">Member Name</label>
+				<mat-form-field class="col-10" appearance="outline">
+				  <mat-label>Member Name</mat-label>
+				  <input matInput placeholder="Name" formControlName="cname">
+				</mat-form-field>
+			  </div>
+			  <div class="row">
+				<label class="col-md-2 label">Gender</label>
+				<mat-form-field class="col-md-3" appearance="outline">
+				  <mat-label>Select</mat-label>
+				  <mat-select formControlName="cgender">
+					<mat-option value="Male">Male</mat-option>
+					<mat-option value="Female">Female</mat-option>
+				  </mat-select>
+				</mat-form-field>
+			  </div>
+			  <div class="row">
+				<label class="col-2 label">Email</label>
+				<mat-form-field class="col-10" appearance="outline">
+				  <mat-label>Email</mat-label>
+				  <input matInput placeholder="Email" formControlName="email">
+				</mat-form-field>
+			  </div>
+			  <div class="row">
+				<label class="col-2 label">Date of Birth</label>
+				<mat-form-field class="col-10" appearance="outline">
+				  <mat-label>Date of Birth</mat-label>
+				  <input matInput [matDatepicker]="dobPicker" placeholder="Date of Birth" formControlName="cdob">
+				  <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+				  <mat-datepicker #dobPicker></mat-datepicker>
+				</mat-form-field>
+			  </div>
+			  <div class="row">
+				<label class="col-2 label">Address</label>
+				<!-- <mat-form-field class="col-3" appearance="outline">
+				  <mat-label>Address</mat-label>
+				  <input matInput placeholder="Address" formControlName="address">
+				</mat-form-field> -->
+				<label class="col-md-3 label">Add Image</label>
+				<div class="col-md-4 mt-3">
+				  <input type="file" (change)="onChange($event)" formControlName="image"/>
+				  <img [src]="myImage" alt="image" class="show-img">
+				</div>
+			  </div>
+			</form>
+		  </div>
+		</mat-card-content>
+	  </mat-card>
+	  <div class="button">
+		<button class="btn Home" mat-raised-button style="background: #ed6b0d" routerLink="/">
+		  Home
+		</button>
+		<button class="btn" (click)="onClickSubmitForm()" mat-raised-button style="background: #43db52">
+		  Add
+		</button>
+	  </div>
+	</div>
+</body>
